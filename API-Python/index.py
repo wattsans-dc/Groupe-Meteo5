@@ -28,5 +28,14 @@ def history():
     result = cursor.fetchall()
     return jsonify(result)
 
+# Enregistrement des données d'humidité
+@app.route('/humidity', methods=['POST'])
+def humidity():
+    data = request.get_json()
+    cursor.execute("INSERT INTO tablename (field1, field2, field3, field4) VALUES (%s, %s, %s, %s)", (data['field1'], data['field2'], data['field3'], data['field4']))
+    cnx.commit()
+    return 'Humidity data received'
+
+
 if __name__ == '__main__':
     app.run(debug=True)
