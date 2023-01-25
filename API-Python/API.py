@@ -10,21 +10,21 @@ cursor = cnx.cursor()
 @app.route('/data', methods=['POST'])
 def data():
     data = request.get_json()
-    cursor.execute("INSERT INTO tablename (field1, field2, field3) VALUES (%s, %s, %s)", (data['field1'], data['field2'], data['field3']))
+    cursor.execute("INSERT INTO meteo_donnée (degré) VALUES (%s)", (data['degré'],))
     cnx.commit()
-    return 'Data received'
+    return 'degré reçu'
 
 # Renvoi des données en temps réel
 @app.route('/realtime', methods=['GET'])
 def realtime():
-    cursor.execute("SELECT * FROM tablename ORDER BY id DESC LIMIT 1")
+    cursor.execute("SELECT * FROM meteo_donnée ORDER BY id DESC LIMIT 1")
     result = cursor.fetchone()
     return jsonify(result)
 
 # Renvoi des données historiques
 @app.route('/history', methods=['GET'])
 def history():
-    cursor.execute("SELECT * FROM tablename")
+    cursor.execute("SELECT * FROM meteo_donnée")
     result = cursor.fetchall()
     return jsonify(result)
 
@@ -32,7 +32,7 @@ def history():
 @app.route('/humidity', methods=['POST'])
 def humidity():
     data = request.get_json()
-    cursor.execute("INSERT INTO tablename (field1, field2, field3, field4) VALUES (%s, %s, %s, %s)", (data['field1'], data['field2'], data['field3'], data['field4']))
+    cursor.execute("INSERT INTO humidité (teaux_humidité) VALUES (%s)", (data['teaux_humidité'],))
     cnx.commit()
     return 'Humidity data received'
 
