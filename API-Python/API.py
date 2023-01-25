@@ -29,7 +29,7 @@ def history():
     return jsonify(result)
 
 # Enregistrement des données d'humidité
-@app.route('/humidity', methods=['POST'])
+@app.route('/humidity', methods=['GET'])
 def humidity():
     data = request.get_json()
     cursor.execute("INSERT INTO humidité (teaux_humidité) VALUES (%s)", (data['teaux_humidité'],))
