@@ -38,4 +38,4 @@ def humidity():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='192.168.137.187', debug=True)
