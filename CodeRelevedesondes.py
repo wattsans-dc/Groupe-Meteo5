@@ -1,3 +1,11 @@
+import requests
+import mysql.connector
+
+cnx = mysql.connector.connect(user='nom_d_utilisateur', password='mot_de_passe',
+                              host='192.168.137.187',
+                              database='nom_de_la_bdd')
+
+
 moyenne = 0
 Valeur = 0
 Valeur1 = sonde.value

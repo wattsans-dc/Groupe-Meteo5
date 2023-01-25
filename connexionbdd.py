@@ -9,7 +9,7 @@ cursor = cnx.cursor()
 
 
 cursor.execute("SELECT * FROM api WHERE id_sonde = 1")
-results = cursor.fletchall()
+results = cursor.fetchall()
 
 for row in results:
     print(row)
