@@ -7,6 +7,7 @@ cnx = mysql.connector.connect(user='root', password='meteo',
 cursor = cnx.cursor()
 
 
+
 cursor.execute("SELECT * FROM api WHERE id_sonde = 1")
 results = cursor.fletchall()
 
