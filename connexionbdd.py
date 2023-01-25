@@ -1,12 +1,20 @@
 import mysql.connector
 
-db = mysql.connector.connect(
-    host="192.168.137.187",
-    user="root",
-    password="meteo",
-    database="Sonde"
-)
+cnx = mysql.connector.connect(user='root', password='meteo',
+                              host="localhost",
+                              database='api')
 
-print(Sonde.Temperature)
+cursor = cnx.cursor()
 
-db.close()
+
+
+cursor.execute("SELECT * FROM api WHERE id_sonde = 1")
+results = cursor.fletchall()
+
+for row in results:
+    print(row)
+
+cursor.close()
+cnx.close()
+
+
