@@ -1,9 +1,9 @@
-import mysql.connector
+import pymysql
 from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 # Connexion à la base de données MySQL
-cnx = mysql.connector.connect(user='root', password='meteo', host='localhost', database='api')
+cnx = pymysql.connect(user='root', password='meteo', host='localhost', database='api')
 cursor = cnx.cursor()
 
 # Enregistrement des données de l'ESP
@@ -19,6 +19,7 @@ def data():
 def realtime():
     cursor.execute("SELECT * FROM meteo_donnée ORDER BY id DESC LIMIT 1")
     result = cursor.fetchone()
+    print(result)
     return jsonify(result)
 
 # Renvoi des données historiques
