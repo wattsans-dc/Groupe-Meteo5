@@ -141,5 +141,7 @@ if __name__ == "__main__":
     import machine
     i2c = machine.I2C(scl = machine.Pin(0), sda = machine.Pin(2), freq=400000)
     s = SI7021(i2c)
-    print(f"Temperature : {s.temperature()}")
-    print(f"Humidite : {s.humidity()}")
+    temp = s.temperature()
+    humid = s.humidity()
+    print(f"Temperature : {temp}")
+    print(f"Humidite : {humid}")
