@@ -1,7 +1,7 @@
-import pymysql
-from flask import Flask, request, jsonify
-app = Flask(__name__)
-
+CORS(app)
+import time
+from flask_socketio import SocketIO
+socketio = SocketIO(app)
 # Connexion à la base de données MySQL
 cnx = pymysql.connect(user='root', password='meteo', host='localhost', database='api')
 cursor = cnx.cursor()
@@ -17,11 +17,10 @@ def data():
 # Renvoi des données en temps réel
 @app.route('/realtime', methods=['GET'])
 def realtime():
-    cursor.execute("SELECT * FROM meteo_donnée ORDER BY id DESC LIMIT 1")
+    cursor.execute("SELECT degré,teaux_humidité FROM meteo_donnée ORDER BY id")
     result = cursor.fetchone()
-    print(result)
-    return jsonify(result)
-
+    socketio.emit('new_data', {"degré": result[0], "teaux_humidité": result[1]})
+    return jsonify({"degré": result[0], "teaux_humidité": result[1]})
 # Renvoi des données historiques
 @app.route('/history', methods=['GET'])
 def history():
@@ -37,6 +36,7 @@ def humidity():
     cnx.commit()
     return 'Humidity data received'
 
+CORS(app, resources={r"/*": {"origins": "192.168.137.187"}})
 
 if __name__ == '__main__':
     app.run(host='192.168.137.187', debug=True)
