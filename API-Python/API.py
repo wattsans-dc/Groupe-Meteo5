@@ -19,7 +19,7 @@ def data():
     data = request.get_json()
     cursor.execute("INSERT INTO meteo_donnée (degré) VALUES (%s)", (data['degré'],))
     cnx.commit()
-    return 'degré reçu'
+    return 'Données degré reçu'
 
 # Renvoi des données en temps réel
 @app.route('/realtime', methods=['GET'])
@@ -46,7 +46,7 @@ def humidity():
     data = request.get_json()
     cursor.execute("INSERT INTO meteo_donnée (teaux_humidité) VALUES (%s)", (data['teaux_humidité'],))
     cnx.commit()
-    return 'Humidity data received'
+    return 'Données humidité reçues'
 
 #post donné capteur
 @app.route('/data_from_sonde', methods=['POST'])
@@ -58,9 +58,9 @@ def data_from_sonde():
     cnx.commit()
     cursor.close()
     cnx.close()
-    return "Data received and added to the database"
+    return "Donées reçues et envoyées dans la base de données "
 
-    return "kikoo"
+    return "Correct"
 
 CORS(app, resources={r"/*": {"origins": "192.168.137.187"}})
 
