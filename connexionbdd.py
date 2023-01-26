@@ -1,20 +1,19 @@
 import mysql.connector
 
-cnx = mysql.connector.connect(user='root', password='meteo',
-                              host="localhost",
-                              database='api')
+# Configuration de la connexion à la base de données
+config = {
+    'user': 'root',
+    'password': 'meteo',
+    'host': '192.168.137.187',
+    'database': 'api',
+    'raise_on_warnings': True,
+}
 
-cursor = cnx.cursor()
+try:
+    # Connexion à la base de données
+    cnx = mysql.connector.connect(**config)
+    print("Connexion établie avec succès.")
 
-
-
-cursor.execute("SELECT * FROM api WHERE id_sonde = 1")
-results = cursor.fetchall()
-
-for row in results:
-    print(row)
-
-cursor.close()
-cnx.close()
-
-
+except mysql.connector.Error as err:
+    # Affiche un message d'erreur si la connexion échoue
+    print("La connexion a échoué : {}".format(err))
