@@ -3,6 +3,7 @@ station = network.WLAN(network.STA_IF)
 station.active(True)
 
 
+
 def connect():
     import network
 
