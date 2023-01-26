@@ -145,3 +145,4 @@ if __name__ == "__main__":
     humid = s.humidity()
     print(f"Temperature : {temp}")
     print(f"Humidite : {humid}")
+
