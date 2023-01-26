@@ -1,19 +1,11 @@
-import mysql.connector
+import requests
+import json
 
-# Configuration de la connexion à la base de données
-config = {
-    'user': 'root',
-    'password': 'meteo',
-    'host': '192.168.137.187',
-    'database': 'api',
-    'raise_on_warnings': True,
-}
+url = 'http://192.168.137.187:5000/humidity'
+headers = {'Content-type': 'application/json'}
+data = {'teaux_humidité': 50}
 
-try:
-    # Connexion à la base de données
-    cnx = mysql.connector.connect(**config)
-    print("Connexion établie avec succès.")
+response = requests.post(url, data=json.dumps(data), headers=headers)
+print(response.status_code)
+print(response.text)
 
-except mysql.connector.Error as err:
-    # Affiche un message d'erreur si la connexion échoue
-    print("La connexion a échoué : {}".format(err))
