@@ -1,6 +1,8 @@
 import pymysql
 from flask import Flask, request, jsonify
 app = Flask(__name__)
+from flask_cors import CORS
+CORS(app)
 
 # Connexion à la base de données MySQL
 cnx = pymysql.connect(user='root', password='meteo', host='localhost', database='api')
@@ -37,6 +39,7 @@ def humidity():
     cnx.commit()
     return 'Humidity data received'
 
+CORS(app, resources={r"/*": {"origins": "192.168.137.187"}})
 
 if __name__ == '__main__':
     app.run(host='192.168.137.187', debug=True)
