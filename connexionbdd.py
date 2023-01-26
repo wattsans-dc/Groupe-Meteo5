@@ -1,20 +1,8 @@
-import mysql.connector
+import requests
 
-cnx = mysql.connector.connect(user='root', password='meteo',
-                              host="localhost",
-                              database='api')
-
-cursor = cnx.cursor()
-
-
-
-cursor.execute("SELECT * FROM api WHERE id_sonde = 1")
-results = cursor.fetchall()
-
-for row in results:
-    print(row)
-
-cursor.close()
-cnx.close()
-
-
+url = 'http://192.168.137.187:5000/data_from_sonde'
+data = {'degré': 69, 'teaux_humidité': 420}
+headers = {'Content-type': 'application/json'}
+response = requests.post(url, json=data, headers=headers)
+print(response.status_code)
+print(response.text)
