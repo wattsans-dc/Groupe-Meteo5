@@ -99,9 +99,19 @@ if __name__ == "__main__":
 
     i2c = machine.I2C(scl=machine.Pin(0), sda=machine.Pin(2), freq=400000)
     s = SI7021(i2c)
-    temp = s.temperature()
-    humid = s.humidity()
-    print(f"Temperature : {temp}")
-    print(f"Humidite : {humid}")
 
+    ValeurTemp = 0
+    ValeurHumid = 0
+    moyenneTemp = 0
+    moyenneHumid = 0
 
+    for i in range(0, 5):
+        ReceptionTemp = s.temperature()
+        ReceptionHumid = s.humidity()
+        ValeurTemp = ValeurTemp + ReceptionTemp
+        ValeurHumid = ValeurHumid + ReceptionHumid
+    moyenneTemp = ValeurTemp / 5
+    moyenneHumid = ValeurHumid / 5
+
+    print(f"Temperature : {moyenneTemp}")
+    print(f"Humidite : {moyenneHumid}")
