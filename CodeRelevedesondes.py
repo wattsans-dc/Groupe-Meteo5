@@ -25,7 +25,7 @@ baseDeDonnees = mysql.connector.connect(user='root',
                                         host='192.168.137.187',
                                         database='api')
 curseur = baseDeDonnees.cursor()
-curseur.execute("INSERT INTO api (temperature, humidite) VALUES (%s, %s)", (moyenneTemp, moyenneHumid))
+curseur.execute("INSERT INTO api (degré, teaux_humidité) VALUES (%s, %s)", (moyenneTemp, moyenneHumid))
 baseDeDonnees.commit()
 baseDeDonnees.close()
 
