@@ -171,5 +171,5 @@ if __name__ == "__main__":
         print(response.status_code)
         print(response.text)
 
-        time.sleep(60)
+        time.sleep(180)
 
