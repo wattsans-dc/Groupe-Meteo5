@@ -1,6 +1,8 @@
 from micropython import const
 import ustruct
 import sys
+import urequests as requests
+import time
 
 _HUMID_NOHOLD = const(0xf5)
 _TEMP_NOHOLD = const(0xf3)
@@ -32,7 +34,9 @@ class SI7021:
 
     def init(self):
         self.reset()
+
         while True:
+
             try:
                 value = self.i2c.readfrom_mem(self.address, _READ_USER1, 1)[0]
             except OSError as e:
@@ -48,6 +52,7 @@ class SI7021:
         data = bytearray(3)
         data[0] = 0xff
         while True:
+
             try:
                 self.i2c.readfrom_into(self.address, data)
             except OSError as e:
@@ -80,6 +85,7 @@ class SI7021:
         return value * 125 / 65536 - 6
 
     def temperature(self, raw=False, block=True):
+
         if not self._measurement:
             self._command(_TEMP_NOHOLD)
         elif self._measurement != _TEMP_NOHOLD:
@@ -100,18 +106,30 @@ if __name__ == "__main__":
     i2c = machine.I2C(scl=machine.Pin(0), sda=machine.Pin(2), freq=400000)
     s = SI7021(i2c)
 
-    ValeurTemp = 0
-    ValeurHumid = 0
-    moyenneTemp = 0
-    moyenneHumid = 0
+    while True:
 
-    for i in range(0, 5):
-        ReceptionTemp = s.temperature()
-        ReceptionHumid = s.humidity()
-        ValeurTemp = ValeurTemp + ReceptionTemp
-        ValeurHumid = ValeurHumid + ReceptionHumid
-    moyenneTemp = ValeurTemp / 5
-    moyenneHumid = ValeurHumid / 5
+        ValeurTemp = 0
+        ValeurHumid = 0
+        moyenneTemp = 0
+        moyenneHumid = 0
 
-    print(f"Temperature : {moyenneTemp}")
-    print(f"Humidite : {moyenneHumid}")
+        for i in range(0, 5):
+            ReceptionTemp = s.temperature()
+            ReceptionHumid = s.humidity()
+            ValeurTemp = ValeurTemp + ReceptionTemp
+            ValeurHumid = ValeurHumid + ReceptionHumid
+        moyenneTemp = ValeurTemp / 5
+        moyenneHumid = ValeurHumid / 5
+
+        print(f"Temperature : {moyenneTemp}")
+        print(f"Humidite : {moyenneHumid}")
+
+        url = 'http://192.168.137.187:5000/data_from_sonde'
+
+        data = {'degre': moyenneTemp, 'teaux_humidite': moyenneHumid}
+        headers = {'content-type': 'application/json'}
+        response = requests.post(url, json=data, headers=headers)
+        # print(response.status_code)
+        # print(response.text)
+
+        time.sleep(3)
