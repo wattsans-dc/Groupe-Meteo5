@@ -1,6 +1,6 @@
 import requests
 import mysql.connector
-from sonde import temp, humid
+from Capteur.sonde import temp, humid
 
 """MOYENNE DES 5 DERNIERES VALEURS POUR LA TEMPERATURE ET L'HUMIDITE"""
 i = 0
