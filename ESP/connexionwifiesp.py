@@ -1,38 +1,11 @@
 import network
-station = network.WLAN(network.STA_IF)
-station.active(True)
 
+sta_if = network.WLAN(network.STA_IF)
 
+sta_if.active(True)
+sta_if.connect("meteo-groupe", "meteogroupe")
 
-def connect():
-    import network
+while not sta_if.isconnected():
+    pass
 
-    ip = '192.168.1.10'
-    subnet = '255.255.255.0'
-    gateway = '192.168.1.1'
-    dns = '8.8.8.8'
-    ssid = "nomReseauWiFi"
-    password = "motDePasseWiFi"
-
-    station = network.WLAN(network.STA_IF)
-
-    if station.isconnected() == True:
-        print("Already connected")
-        return
-
-    station.active(True)
-    station.ifconfig((ip, subnet, gateway, dns))
-    station.connect()
-
-    while station.isconnected() == False:
-        pass
-
-    print("Connection successful")
-    print(station.ifconfig())
-
-
-def disconnect():
-    import network
-    station = network.WLAN(network.STA_IF)
-    station.disconnect()
-    station.active(False)
+print("Connecté à WiFi avec l'adresse IP :", sta_if.ifconfig()[0])
