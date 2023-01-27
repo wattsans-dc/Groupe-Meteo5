@@ -4,11 +4,7 @@ app = Flask(__name__)
 from flask_cors import CORS
 CORS(app)
 import time
-#from flask_socketio import SocketIO
-#socketio = SocketIO(app)
-# Connexion à la base de données MySQL
-#cnx = pymysql.connect(user='root', password='meteo', host='localhost', database='api')
-#cursor = cnx.cursor()
+
 
 # Enregistrement des données de l'ESP
 @app.route('/temp', methods=['POST'])
@@ -29,8 +25,6 @@ def realtime():
     result = cursor.fetchone()
     cnx.close()
     print(result)
-#    socketio.emit('new_data', {"degré": result[0], "teaux_humidité": result[1]})
-    #return jsonify({"degré": result[0], "teaux_humidité": result[1]})
     return {"degre": result[0], "teaux_humidite": result[1]}
 # Renvoi des données historiques
 @app.route('/history', methods=['GET'])
@@ -58,7 +52,7 @@ def data_from_sonde():
     cursor.close()
     cnx.close()
     return "Data received and added to the database"
-    return "kikoo"
+    return "reçu"
 
 CORS(app, resources={r"/*": {"origins": "192.168.137.187"}})
 
