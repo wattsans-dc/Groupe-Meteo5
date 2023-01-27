@@ -1,7 +1,6 @@
 from micropython import const
 import ustruct
 import sys
-import urequests as requests
 import time
 
 _HUMID_NOHOLD = const(0xf5)
@@ -121,15 +120,8 @@ if __name__ == "__main__":
         moyenneTemp = ValeurTemp / 5
         moyenneHumid = ValeurHumid / 5
 
-        print(moyenneTemp)
-        print(moyenneHumid)
-
-        url = 'http://192.168.137.187:5000/data_from_sonde'
-
-        data = {'degre': moyenneTemp, 'teaux_humidite': moyenneHumid}
-        headers = {'content-type': 'application/json'}
-        response = requests.post(url, json=data, headers=headers)
-        # print(response.status_code)
-        # print(response.text)
+        print("Temp : " + str(moyenneTemp))
+        print("Humid : " + str(moyenneHumid))
 
         time.sleep(3)
+
