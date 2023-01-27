@@ -1,5 +1,7 @@
-from RPLCD.gpio import CharLCD
+from lcdi2c import lcdi2c
 
-lcd = CharLCD(cols=16, rows=2, pin_rs=37, pin_e=35, pins_data=[33, 31, 29, 23])
+# Initialise l'écran LCD
+lcd = lcdi2c.lcd()
 
-lcd.write_string(u'Espace Raspberry    Francais')
+# Affiche du texte sur la première ligne
+lcd.lcd_display_string("Hello, World!", 1)
