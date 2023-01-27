@@ -6,12 +6,11 @@ body{background-color: rgb(255, 255, 255);}
     height: 100%;
     position: absolute;
     background-size: cover;
-    
+    background-image: url(fd1.png);
     top: 0%;
     left: 0%;
     margin-left: auto;
 }
-
 .rectangle{
     background: rgb(58,136,180);
     background: linear-gradient(90deg, rgba(58,136,180,1) 0%, rgba(41,64,166,1) 29%, rgba(36,142,205,1) 92%); 
@@ -48,7 +47,7 @@ body{background-color: rgb(255, 255, 255);}
 }
 
 .tab {
-    padding: 10px 14.35%; /* pour ajouter de l'espacement autour du texte */
+    padding: 10px 8.2%; /* pour ajouter de l'espacement autour du texte */
     text-decoration: none; /* pour retirer la ligne de soulignement */
     color: rgb(101, 100, 179); /* pour définir la couleur du texte */
     margin-right: 50px; /* pour ajouter de l'espacement entre les onglets */
@@ -73,3 +72,35 @@ body{background-color: rgb(255, 255, 255);}
     height: 30px;
     position: fixed;
 }
+
+.Singe{
+
+    background-image: url(singe.png);
+    background-size: cover;
+    width: 87px;
+    height: 77px;
+    position: fixed;
+    left: 47.3%;
+    top: 2%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    position:absolute;
+    top: 250px;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    background: rgb(0,255,242);
+    background: linear-gradient(90deg, rgba(0,255,242,0.38) 0%, rgba(0,255,242,0.38426708574054624) 100%);
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background: rgb(0,191,255);
+    background: linear-gradient(90deg, rgba(0,191,255,0.45) 0%, rgba(0,191,255,0.4) 100%);
+  }
+  

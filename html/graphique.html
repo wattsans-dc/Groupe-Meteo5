@@ -14,12 +14,13 @@
     <div class="conteneur">
         <div class="rectangle"> 
             <a href="index.html"><div class="log home"></div></a>
+            <div class="Singe"></div>
         </div>
         <div class="rectangle2"> 
             <div class="tabs">
                 <a href="Température.html" class="logo tab">Température</a>
                 <a href="Humidité.html" class="logo tab">Humidité</a>
-                <a href="Graphique.html" class="logo tab">graphique</a>
+                <a href="Graphique.html" class="logo tab G">Graphique</a>
               </div> 
               <div class="conteneur2"></div>  
         </div>
@@ -47,14 +48,14 @@
             },
             options: {}
           });
-          
-          // Ajouter des données aléatoires toutes les secondes
-          $(document).ready(function(){
+                   // Ajouter des données toutes les 3 secondes
+
+                   $(document).ready(function(){
    setInterval(function() {
         $.get("http://192.168.137.187:5000/realtime", function(data) {
             var x = new Date();
-            var y1 = data["degré"];
-            var y2 = data["teaux_humidité"];
+            var y1 = parseFloat(data["degre"]);
+            var y2 = parseFloat(data["teaux_humidite"]);
             chart.data.labels.push(x.toLocaleTimeString());
             chart.data.datasets[0].data.push(y1);
             chart.data.datasets[1].data.push(y2);

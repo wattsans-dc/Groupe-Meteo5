@@ -6,7 +6,7 @@ body{background-color: rgb(255, 255, 255);}
     height: 100%;
     position: absolute;
     background-size: cover;
-    background-image: url(nuage2.jpg);
+    background-image: url(fd1.png);
     top: 0%;
     left: 0%;
     margin-left: auto;
@@ -42,13 +42,14 @@ body{background-color: rgb(255, 255, 255);}
     left: 0%;
     height: 38px;
     width: 100%;
+    
 }
 .tabs {
     display: flex;
 }
 
 .tab {
-    padding: 10px 14.35%; /* pour ajouter de l'espacement autour du texte */
+    padding: 10px 8.4%; /* pour ajouter de l'espacement autour du texte */
     text-decoration: none; /* pour retirer la ligne de soulignement */
     color: rgb(101, 100, 179); /* pour définir la couleur du texte */
     margin-right: 50px; /* pour ajouter de l'espacement entre les onglets */
@@ -68,3 +69,122 @@ body{background-color: rgb(255, 255, 255);}
     height: 30px;
     position: fixed;
 }
+
+.Singe{
+
+    background-image: url(singe.png);
+    background-size: cover;
+    width: 87px;
+    height: 77px;
+    position: fixed;
+    left: 47.3%;
+    top: 2%;
+}
+
+.rectangleinfo{
+
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,0.5047152650122548) 0%, rgba(0,0,0,0.39267044708508403) 92%);  
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    height: 77px;
+    width: 100%;
+}
+
+.time{
+
+    background-image: url(Time.png);
+    background-size:contain;
+    background-repeat:no-repeat;
+    width: 87px;
+    height: 77px;
+    position: absolute;
+    left: 0%;
+    bottom: -19%;
+}
+
+.utilisateur{
+
+    background-image: url(utilisateur.png);
+    background-size:contain;
+    background-repeat:no-repeat;
+    width: 87px;
+    height: 77px;
+    position: absolute;
+    left: 75%;
+    bottom: -25%;
+}
+
+.texteT{
+    position: absolute;
+    bottom: 29%;
+    left: 19%;
+    color: rgb(255, 255, 255);
+}
+.texteT1{
+    position: absolute;
+    bottom: 2%;
+    left: 20%;
+    color: rgb(255, 255, 255);
+}
+
+.texteU{
+    position: absolute;
+    bottom: 48%;
+    left: 52%;
+    color: rgb(255, 255, 255);
+    
+}
+
+.texteN{
+    position: absolute;
+    bottom: 16%;
+    left: 47%;
+    color: rgb(255, 255, 255);
+    font-size: 100%; /* 100% de la taille de police parente */}
+
+.texteN1{
+    position: absolute;
+    bottom: 16%;
+    left: 64%;
+    color: rgb(255, 255, 255);
+    font-size: 100%; /* 100% de la taille de police parente */}
+
+.texteN2{
+    position: absolute;
+    bottom: -10%;
+    left: 47%;
+    color: rgb(255, 255, 255);
+    font-size: 100%; /* 100% de la taille de police parente */}
+
+.texteN3{
+    position: absolute;
+    bottom: -10%;
+    left: 64%;
+    color: rgb(255, 255, 255);
+    font-size: 100%; /* 100% de la taille de police parente */}
+
+    .Titre{
+
+        background: rgb(0,0,0);
+        background: linear-gradient(90deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.1) 100%); 
+        position: absolute;
+        bottom: 39%;
+        left: 36%;
+        width: 27%;
+
+        color: rgb(122, 242, 255);
+        font-size: 250%; /* 100% de la taille de police parente */
+        text-align: center;
+    }
+
+    .Title{
+
+        font-weight: 700;
+        position: absolute;
+        bottom: -25%;
+        left: 21%; 
+        color: rgb(122, 242, 255);
+        font-size: 350%; /* 100% de la taille de police parente */
+    }
