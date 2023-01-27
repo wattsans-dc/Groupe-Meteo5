@@ -6,15 +6,30 @@ CORS(app)
 import time
 
 
-# Enregistrement des données de l'ESP
-@app.route('/temp', methods=['POST'])
+
+# Enregistrement des données de température
+@app.route('/temp', methods=['GET'])
 def data():
     cnx = pymysql.connect(user='root', password='meteo', host='localhost', database='api')
     cursor = cnx.cursor()
-    data = request.get_json()
-    cursor.execute("INSERT INTO meteo_donnée (degré) VALUES (%s)", (data['degré'],))
-    cnx.commit()
-    return 'degré reçu'
+    cursor.execute("SELECT degre FROM meteo_donnée ORDER BY id DESC")
+    result = cursor.fetchall()
+    cursor.close()
+    cnx.close()
+    return jsonify(result)
+
+
+# Enregistrement des données de température
+@app.route('/humide', methods=['GET'])
+def humide():
+    cnx = pymysql.connect(user='root', password='meteo', host='localhost', database='api')
+    cursor = cnx.cursor()
+    cursor.execute("SELECT teaux_humidite FROM meteo_donnée ORDER BY id DESC")
+    result = cursor.fetchall()
+    cursor.close()
+    cnx.close()
+    return jsonify(result)
+
 
 # Renvoi des données en temps réel
 @app.route('/realtime', methods=['GET'])
@@ -26,20 +41,7 @@ def realtime():
     cnx.close()
     print(result)
     return {"degre": result[0], "teaux_humidite": result[1]}
-# Renvoi des données historiques
-@app.route('/history', methods=['GET'])
-def history():
-    cursor.execute("SELECT * FROM meteo_donnée")
-    result = cursor.fetchall()
-    return jsonify(result)
 
-# Enregistrement des données d'humidité
-@app.route('/humidity', methods=['POST'])
-def humidity():
-    data = request.get_json()
-    cursor.execute("INSERT INTO meteo_donnée (teaux_humidité) VALUES (%s)", (data['teaux_humidité'],))
-    cnx.commit()
-    return 'Humidity data received'
 
 #post donné capteur
 @app.route('/data_from_sonde', methods=['POST'])
