@@ -121,8 +121,8 @@ if __name__ == "__main__":
         moyenneTemp = ValeurTemp / 5
         moyenneHumid = ValeurHumid / 5
 
-        print(f"Temperature : {moyenneTemp}")
-        print(f"Humidite : {moyenneHumid}")
+        print(moyenneTemp)
+        print(moyenneHumid)
 
         url = 'http://192.168.137.187:5000/data_from_sonde'
 
